@@ -28,19 +28,30 @@ import selection_datum from "./datum";
 import selection_on from "./on";
 import selection_dispatch from "./dispatch";
 
+// 选区的工作原理： https://bost.ocks.org/mike/selection/
+
 export var root = [null];
 
+// 表示一个 d3 选区，框架内部使用
+// 选区的概念消化了一个或多个DOM结果的差异，不论筛选结果是多少，都在一个选区内
 export function Selection(groups, parents) {
-  this._groups = groups;
-  this._parents = parents;
+  this._groups = groups; // [[]]
+  this._parents = parents; // []
 }
 
+
+// 根据 new 操作符的传递特性，同时 selection 与 Selection 相同原型，
+// 则 d3.selection 可以用来做如下检测：
+//   d3.selection() instanceof d3.selection --> true
+//   d3.select('p') instanceof d3.selection --> true
+// 直接执行该函数得到的是 documentElement 的选区
 function selection() {
   return new Selection([[document.documentElement]], root);
 }
 
+// 内置原型方法。可以通过 d3.selection.prototype 扩展。
 Selection.prototype = selection.prototype = {
-  constructor: Selection,
+  constructor: Selection,  // <--- 注意
   select: selection_select,
   selectAll: selection_selectAll,
   filter: selection_filter,
@@ -73,3 +84,30 @@ Selection.prototype = selection.prototype = {
 };
 
 export default selection;
+
+
+/* 
+  关于 new 操作符的特性：
+  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/new
+  
+  function Foo (arg) {
+    this.foo = arg;
+  }
+
+  function Bar(arg) {
+    return new Foo(arg);
+  }
+
+  var foo = new Foo('foo');
+  var bar = new Bar('bar');
+  var barFn = Bar('barFn');
+
+  console.log(bar instanceof Foo);    // true
+  console.log(bar instanceof Bar);    // false
+  console.log(barFn instanceof Foo);  // true
+  console.log(barFn instanceof Bar);  // false
+
+  console.log(foo.__proto__===bar.__proto__);    // true
+  console.log(bar.__proto__===barFn.__proto__);  // true
+  console.log(foo.__proto__===Foo.prototype);    // true
+ */
