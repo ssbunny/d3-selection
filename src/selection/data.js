@@ -75,6 +75,7 @@ function bindKey(parent, group, enter, update, exit, data, key) {
 }
 
 export default function(value, key) {
+  // API: selection.data() - 无参时返回选中元素上的数据
   if (!value) {
     data = new Array(this.size()), j = -1;
     this.each(function(d) { data[++j] = d; });
