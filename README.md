@@ -34,7 +34,7 @@
 * [x] selection/index.js - 选区
 * [ ] selection/insert.js
 * [ ] selection/lower.js
-* [ ] selection/merge.js
+* [x] selection/merge.js - 合并选区
 * [ ] selection/node.js
 * [ ] selection/nodes.js
 * [ ] selection/on.js
