@@ -30,8 +30,11 @@ export default function(name, value, priority) {
       : styleValue(this.node(), name);
 }
 
-// API: d3.style()
+// API: d3.style() - 这个方法不赋值
 export function styleValue(node, name) {
-  return node.style.getPropertyValue(name)
-      || defaultView(node).getComputedStyle(node, null).getPropertyValue(name);
+  return node.style.getPropertyValue(name)  // 先从内联 style 上取
+      || defaultView(node).getComputedStyle(node, null).getPropertyValue(name); // 取计算值
 }
+
+// style 的计算值：
+// https://developer.mozilla.org/en-US/docs/Web/API/Window/getComputedStyle
