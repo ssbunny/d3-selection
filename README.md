@@ -17,7 +17,7 @@
 * [ ] sourceEvent.js
 * [ ] touch.js
 * [ ] touches.js
-* [ ] window.js
+* [x] window.js - 获得 window 对象
 * [ ] selection/append.js
 * [ ] selection/attr.js
 * [ ] selection/call.js

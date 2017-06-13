@@ -1,6 +1,7 @@
 import {Selection} from "./index";
 
 // 合并选区
+// 主要用于合并 enter 和 update 选区(两个选区可能进行了各自的修改操作)
 export default function(selection) {
 
   for (var groups0 = this._groups, groups1 = selection._groups, m0 = groups0.length, m1 = groups1.length, m = Math.min(m0, m1), merges = new Array(m0), j = 0; j < m; ++j) {

@@ -1,4 +1,4 @@
-// element.matches
+// element.matches, 主要是 selection.filter 内部使用
 var matcher = function(selector) {
   return function() {
     return this.matches(selector);
@@ -22,3 +22,6 @@ if (typeof document !== "undefined") {
 }
 
 export default matcher;
+// var div = selection.filter("div");
+// 同
+// var div = selection.filter(d3.matcher("div"));

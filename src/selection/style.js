@@ -20,6 +20,7 @@ function styleFunction(name, value, priority) {
   };
 }
 
+// API: selection.style()
 export default function(name, value, priority) {
   return arguments.length > 1
       ? this.each((value == null
@@ -29,6 +30,7 @@ export default function(name, value, priority) {
       : styleValue(this.node(), name);
 }
 
+// API: d3.style()
 export function styleValue(node, name) {
   return node.style.getPropertyValue(name)
       || defaultView(node).getComputedStyle(node, null).getPropertyValue(name);
