@@ -44,9 +44,9 @@ function attrFunctionNS(fullname, value) {
 
 // API: selection.attr(name[, value])
 export default function(name, value) {
-  var fullname = namespace(name); // 带命名空间的属性，如 xlink:href
+  var fullname = namespace(name); // 1)可以处理带命名空间的属性，如 xlink:href
 
-  // 获取属性，注意这里是根据形参数来判断的，故
+  // 2)获取属性，注意这里是根据形参数来判断的，故
   // selection.attr('foo', undefined) 与 selection.attr('foo')
   // 会表现出不同的行为，前者赋值，后者取值
   if (arguments.length < 2) {
@@ -57,9 +57,11 @@ export default function(name, value) {
         : node.getAttribute(fullname);
   }
 
-  // 设置属性
-  return this.each((value == null // value 为 null 或 undefined 会清空该属性
+  // 3)设置属性
+  return this.each((value == null // 3.1) value 为 null 或 undefined 会清空该属性
       ? (fullname.local ? attrRemoveNS : attrRemove) : (typeof value === "function"
+      // 3.2) value 可以传入 callback 函数
       ? (fullname.local ? attrFunctionNS : attrFunction)
+      // 3.3) value 可以是常量值
       : (fullname.local ? attrConstantNS : attrConstant)))(fullname, value));
 }

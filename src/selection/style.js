@@ -1,5 +1,7 @@
 import defaultView from "../window";
 
+// 下面 3 个都是用在 selection.each 上的 callback
+
 function styleRemove(name) {
   return function() {
     this.style.removeProperty(name);
@@ -20,17 +22,17 @@ function styleFunction(name, value, priority) {
   };
 }
 
-// API: selection.style()
+// API: selection.style(name[, value[, priority]])
 export default function(name, value, priority) {
   return arguments.length > 1
-      ? this.each((value == null
+      ? this.each((value == null // 设为 null 时是 remove
             ? styleRemove : typeof value === "function"
             ? styleFunction
             : styleConstant)(name, value, priority == null ? "" : priority))
       : styleValue(this.node(), name);
 }
 
-// API: d3.style() - 这个方法不赋值
+// API: d3.style() - 这个方法只取值、不赋值 (4.9 版本新增)
 export function styleValue(node, name) {
   return node.style.getPropertyValue(name)  // 先从内联 style 上取
       || defaultView(node).getComputedStyle(node, null).getPropertyValue(name); // 取计算值

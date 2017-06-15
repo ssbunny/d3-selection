@@ -18,6 +18,9 @@ function propertyFunction(name, value) {
   };
 }
 
+// API: selection.property(name[, value])
+// 类比 jQuery 的 attr 与 prop 方法的区别，它与 selection.attr 的
+// 区别也是用在 checkbox 等取值和属性值代表不同含义的情况
 export default function(name, value) {
   return arguments.length > 1
       ? this.each((value == null
