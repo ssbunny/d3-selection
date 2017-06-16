@@ -18,7 +18,7 @@
 * [ ] touch.js
 * [ ] touches.js
 * [x] window.js - 获得 window 对象
-* [x] selection/append.js - 创建元素
+* [x] selection/append.js - 添加元素
 * [x] selection/attr.js - 获取/设置属性
 * [ ] selection/call.js
 * [x] selection/classed.js - 处理样式
@@ -33,19 +33,19 @@
 * [x] selection/html.js - 获取/设置节点的 innerHTML 值
 * [x] selection/index.js - 选区
 * [x] selection/insert.js - 插入元素
-* [ ] selection/lower.js
+* [x] selection/lower.js - 将当前选区中的元素依次移动到最前面
 * [x] selection/merge.js - 合并选区
 * [x] selection/node.js - 找到选区内第一个非空元素
 * [x] selection/nodes.js - 找到选区内所有非空元素
 * [ ] selection/on.js
-* [ ] selection/order.js
+* [x] selection/order.js - 按当前选区的顺序重新组织 DOM 结构
 * [x] selection/property.js - 获取/设置属性
-* [ ] selection/raise.js
-* [ ] selection/remove.js
+* [x] selection/raise.js - 将当前选区中的元素依次移动到最后面
+* [x] selection/remove.js - 删除元素
 * [x] selection/select.js - 获得子选区
 * [x] selection/selectAll.js - 获得子选区
 * [x] selection/size.js - 获得当前选区大小，不包含空元素
-* [ ] selection/sort.js
+* [x] selection/sort.js - 重排选区 + order 操作
 * [ ] selection/sparse.js
 * [x] selection/style.js - 处理内联样式
 * [x] selection/text.js - 获取/设置节点的 textContent 值
